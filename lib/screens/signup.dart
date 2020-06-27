@@ -1,9 +1,16 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:proto/anims/page_route.dart';
+import 'package:proto/bottomNav.dart';
 import 'package:proto/icons/google_icons.dart';
 import 'package:proto/configs/ThemeColors.dart';
 import 'package:proto/screens/login.dart';
+
+import '../configs/ThemeColors.dart';
 
 class SignUpScreen extends StatefulWidget {
   final double height, width;
@@ -15,23 +22,26 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  bool waiting = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ThemeColors.bg,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(adjustedHeight(15.0)),
-        child: AppBar(
-          title: Text("Tradio"),
-          backgroundColor: ThemeColors.main,
-        ),
-      ),
+      // appBar: PreferredSize(
+      //   preferredSize: Size.fromHeight(adjustedHeight(15.0)),
+      //   child: AppBar(
+      //     title: Text("Tradio"),
+      //     backgroundColor: ThemeColors.main,
+      //   ),
+      // ),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(
               top: adjustedHeight(20.0),
               left: adjustedWidth(15.0),
               right: adjustedWidth(20.0)),
+          padding: EdgeInsets.only(top: 40.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -67,40 +77,56 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(
                 height: adjustedHeight(50.0),
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(
-                    0, adjustedHeight(40.0), adjustedWidth(20.0), 0),
-                padding: EdgeInsets.fromLTRB(
-                    adjustedWidth(55.0),
-                    adjustedHeight(80.0),
-                    adjustedWidth(55.0),
-                    adjustedHeight(80.0)),
-                alignment: Alignment(0.0, 0.0),
-                child: Text(
-                  "Sign Up",
-                  style: TextStyle(
-                    color: ThemeColors.shadowLight,
-                    fontSize: adjustedWidth(15.0),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                    color: ThemeColors.main,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(25.0),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: ThemeColors.shadowLight,
-                        blurRadius: 10.0,
-                        offset: Offset(-10.0, -10.0),
+              GestureDetector(
+                onTap: () {
+                  // setState(() {
+                  //   waiting = true;
+                  // });
+                  Navigator.pushReplacement(context,
+                      CupertinoPageRoute(builder: (context) => BottomNav()));
+                },
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(
+                      0, adjustedHeight(40.0), adjustedWidth(20.0), 0),
+                  padding: EdgeInsets.fromLTRB(
+                      adjustedWidth(55.0),
+                      adjustedHeight(60.0),
+                      adjustedWidth(55.0),
+                      adjustedHeight(60.0)),
+                  alignment: Alignment(0.0, 0.0),
+                  child: waiting
+                      ? SpinKitWave(
+                          size: adjustedWidth(12.0),
+                          color: Colors.white60,
+                        )
+                      : Text(
+                          "Sign Up",
+                          style: TextStyle(
+                              color: ThemeColors.shadowLight,
+                              fontSize: adjustedWidth(15.0),
+                              fontFamily: "Quicksand"),
+                        ),
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: ThemeColors.gradient,
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
                       ),
-                      BoxShadow(
-                        color: ThemeColors.shadowColored,
-                        blurRadius: 10.0,
-                        offset: Offset(10.0, 10.0),
-                      )
-                    ]),
+                      boxShadow: [
+                        BoxShadow(
+                          color: ThemeColors.shadowLight,
+                          blurRadius: 10.0,
+                          offset: Offset(-10.0, -10.0),
+                        ),
+                        BoxShadow(
+                          color: Color.fromRGBO(41, 72, 255, 0.3),
+                          blurRadius: 15.0,
+                          offset: Offset(10.0, 10.0),
+                        )
+                      ]),
+                ),
               ),
               SizedBox(
                 height: adjustedHeight(40.0),
@@ -155,9 +181,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushReplacement(createRoute(
-                            LoginScreen(
-                                height: widget.height, width: widget.width)));
+                        Navigator.of(context).push(createRoute(LoginScreen(
+                            height: widget.height, width: widget.width)));
                       },
                       child: Text(
                         "SignIn",
@@ -208,7 +233,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   decoration: BoxDecoration(
                       color: ThemeColors.bg,
                       borderRadius: BorderRadius.all(
-                        Radius.circular(25.0),
+                        Radius.circular(15.0),
                       ),
                       boxShadow: [
                         BoxShadow(
