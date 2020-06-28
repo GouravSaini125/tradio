@@ -28,6 +28,7 @@ dependencies:
   google_nav_bar: ^2.2.0
   eva_icons_flutter: ^2.0.0
   google_maps_flutter: ^0.5.27+3
+  http:
 
 dev_dependencies:
   flutter_test:

@@ -41,7 +41,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               top: adjustedHeight(20.0),
               left: adjustedWidth(15.0),
               right: adjustedWidth(20.0)),
-          padding: EdgeInsets.only(top: 40.0),
+          padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.aspectRatio <= 2.0
+                  ? adjustedHeight(80.0)
+                  : 60.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -58,8 +61,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Text(
                       "Sign Up",
                       style: TextStyle(
-                          fontSize: adjustedWidth(10.0),
-                          fontWeight: FontWeight.w900),
+                        fontSize: adjustedWidth(10.0),
+                        fontWeight: FontWeight.w900,
+                      ),
                     )
                   ],
                 ),
