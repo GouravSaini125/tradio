@@ -18,10 +18,18 @@ class ThemeColors {
   static List<Color> gradient2 = [Color(0xFFff9966), Color(0xFFff5e62)];
   static List<Color> gradient3 = [Color(0xFF00d2ff), Color(0xFF3a7bd5)];
 
-  // static List<dynamic> gradientsList = [
-  //   gradient,
-  //   gradient1,
-  //   gradient2,
-  //   gradient3
-  // ];
+  static List<Color> color = [
+    Color(0xFFff6337),
+    Color(0xFF46b3e6),
+    Color(0xFFffdc34),
+    Color(0xFF6decb9),
+    Color(0xFF5ca0d3)
+  ];
+
+  static List<List<Color>> gradientsList = [
+    gradient,
+    gradient1,
+    gradient2,
+    gradient3
+  ];
 }
