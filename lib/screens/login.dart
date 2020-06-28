@@ -81,9 +81,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     0, adjustedHeight(40.0), adjustedWidth(20.0), 0),
                 padding: EdgeInsets.fromLTRB(
                     adjustedWidth(55.0),
-                    adjustedHeight(80.0),
+                    adjustedHeight(60.0),
                     adjustedWidth(55.0),
-                    adjustedHeight(80.0)),
+                    adjustedHeight(60.0)),
                 alignment: Alignment(0.0, 0.0),
                 child: Text(
                   "Sign In",
@@ -94,9 +94,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 decoration: BoxDecoration(
-                    color: ThemeColors.main,
+                    gradient: LinearGradient(
+                        colors: ThemeColors.gradient,
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight),
                     borderRadius: BorderRadius.all(
-                      Radius.circular(25.0),
+                      Radius.circular(15.0),
                     ),
                     boxShadow: [
                       BoxShadow(
@@ -105,8 +108,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         offset: Offset(-10.0, -10.0),
                       ),
                       BoxShadow(
-                        color: ThemeColors.shadowColored,
-                        blurRadius: 10.0,
+                        color: Color.fromRGBO(41, 72, 255, 0.3),
+                        blurRadius: 15.0,
                         offset: Offset(10.0, 10.0),
                       )
                     ]),
@@ -164,7 +167,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushReplacement(createRoute(SignUpScreen(height: widget.height, width: widget.width)));
+                        Navigator.of(context).pushReplacement(createRoute(
+                            SignUpScreen(
+                                height: widget.height, width: widget.width)));
                       },
                       child: Text(
                         "SignUp",
@@ -216,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: BoxDecoration(
                       color: ThemeColors.bg,
                       borderRadius: BorderRadius.all(
-                        Radius.circular(25.0),
+                        Radius.circular(15.0),
                       ),
                       boxShadow: [
                         BoxShadow(
