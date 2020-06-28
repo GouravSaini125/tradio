@@ -6,7 +6,7 @@ import 'package:proto/screens/signup.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: true,
+        enabled: false,
         builder: (context) => MyApp(),
       ),
     );
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Tradio',
       themeMode: ThemeMode.light,
-      theme: ThemeData(fontFamily: 'LibreBaskerVille'),
+      theme: ThemeData(fontFamily: 'Josefin'),
       home: MyHomePage(),
     );
   }
@@ -33,8 +33,6 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-    return SafeArea(
-        child: SignUpScreen(height: height, width: width)
-    );
+    return SafeArea(child: SignUpScreen(height: height, width: width));
   }
 }
