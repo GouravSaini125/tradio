@@ -2,13 +2,28 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/configs/ThemeColors.dart';
 import 'package:proto/screens/homePart.dart';
+import 'package:proto/screens/serviceList.dart';
 
 class Categories extends StatefulWidget {
   @override
   _CategoriesState createState() => _CategoriesState();
 }
 
-List<String> category = ["Handyman", "Cleaning", "Electrical", "Pest Control"];
+List<String> category = [
+  "Handyman",
+  "Cleaning",
+  "Electrical",
+  "Pest Control",
+  "Plumber"
+];
+
+List<String> categoryIcon = [
+  "construction.png",
+  "vacuum-cleaner.png",
+  "electricity-bill.png",
+  "grasshopper.png",
+  "water-bill.png"
+];
 
 class _CategoriesState extends State<Categories> {
   @override
@@ -17,12 +32,18 @@ class _CategoriesState extends State<Categories> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.white,
-        leading: IconButton(
-            icon: Icon(
-              EvaIcons.arrowBack,
-              color: Colors.black,
-            ),
-            onPressed: () {}),
+        leading: Hero(
+          tag: "pop",
+          child: Material(
+            color: Colors.transparent,
+            child: IconButton(
+                icon: Icon(
+                  EvaIcons.arrowBack,
+                  color: Colors.black,
+                ),
+                onPressed: () {}),
+          ),
+        ),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
@@ -58,36 +79,56 @@ class _CategoriesState extends State<Categories> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: ListView.builder(
+            physics: BouncingScrollPhysics(),
             itemCount: category.length,
             itemBuilder: (BuildContext context, int index) {
-              return Hero(
-                tag: index.toString(),
-                child: Container(
-                  margin: EdgeInsets.all(20.0),
-                  height: 100,
-                  width: 200,
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 10.0,
-                            color: Color(0xFF3a7bd5).withOpacity(0.2),
-                            offset: Offset(0, 10))
-                      ],
-                      gradient: LinearGradient(
-                          colors: ThemeColors.gradient3,
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight),
-                      borderRadius: BorderRadius.circular(20.0),
-                      color: Colors.black),
-                  child: Center(
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      SlideUpRoute(
+                          page: ServicesList(
+                        index: index,
+                      )));
+                },
+                child: Hero(
+                  tag: index.toString(),
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        left: 20.0, right: 20.0, bottom: 10.0, top: 10.0),
+                    height: 100,
+                    width: 200,
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 10.0,
+                              color: Color(0xFF3a7bd5).withOpacity(0.2),
+                              offset: Offset(0, 10))
+                        ],
+                        borderRadius: BorderRadius.circular(15.0),
+                        color: ThemeColors.color[index]),
                     child: Material(
                         color: Colors.transparent,
-                        child: Text(
-                          category[index],
-                          style: TextStyle(
-                              fontFamily: "Quicksand",
-                              fontSize: 20.0,
-                              color: Colors.white),
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 30.0,
+                            ),
+                            Image.asset(
+                              "assets/icons/${categoryIcon[index]}",
+                              width: 50.0,
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            Text(
+                              category[index],
+                              style: TextStyle(
+                                  fontFamily: "Quicksand",
+                                  fontSize: 20.0,
+                                  color: Colors.white),
+                            ),
+                          ],
                         )),
                   ),
                 ),
@@ -96,4 +137,31 @@ class _CategoriesState extends State<Categories> {
       ),
     );
   }
+}
+
+class SlideUpRoute extends PageRouteBuilder {
+  final Widget page;
+  SlideUpRoute({this.page})
+      : super(
+          pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+          ) =>
+              page,
+          transitionDuration: Duration(milliseconds: 700),
+          transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
+          ) =>
+              SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 1),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+        );
 }
