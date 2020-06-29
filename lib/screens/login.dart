@@ -1,8 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:proto/anims/page_route.dart';
+import 'package:proto/bottomNav.dart';
 import 'package:proto/icons/google_icons.dart';
 import 'package:proto/configs/ThemeColors.dart';
+import 'package:proto/repos/auth.dart';
 import 'package:proto/screens/signup.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -15,6 +20,19 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool waiting = false;
+  Auth auth;
+  TextEditingController _emailCtrl, _passCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+    final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+    auth = Auth(firebaseAuth);
+    _emailCtrl = TextEditingController();
+    _passCtrl = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,8 +76,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: EdgeInsets.only(top: adjustedHeight(250.0)),
                 child: Column(
                   children: <Widget>[
-                    inputField("Email"),
-                    inputField("Password"),
+                    inputField("Email", _emailCtrl),
+                    inputField("Password", _passCtrl),
                   ],
                 ),
               ),
@@ -76,43 +94,53 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(
-                    0, adjustedHeight(40.0), adjustedWidth(20.0), 0),
-                padding: EdgeInsets.fromLTRB(
-                    adjustedWidth(55.0),
-                    adjustedHeight(60.0),
-                    adjustedWidth(55.0),
-                    adjustedHeight(60.0)),
-                alignment: Alignment(0.0, 0.0),
-                child: Text(
-                  "Sign In",
-                  style: TextStyle(
-                    color: ThemeColors.shadowLight,
-                    fontSize: adjustedWidth(15.0),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: ThemeColors.gradient,
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15.0),
+              GestureDetector(
+                onTap: (){
+                  login();
+                },
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(
+                      0, adjustedHeight(40.0), adjustedWidth(20.0), 0),
+                  padding: EdgeInsets.fromLTRB(
+                      adjustedWidth(55.0),
+                      adjustedHeight(60.0),
+                      adjustedWidth(55.0),
+                      adjustedHeight(60.0)),
+                  alignment: Alignment(0.0, 0.0),
+                  child: waiting
+                      ? SpinKitWave(
+                    size: adjustedWidth(12.0),
+                    color: Colors.white60,
+                  )
+                      : Text(
+                    "Sign In",
+                    style: TextStyle(
+                      color: ThemeColors.shadowLight,
+                      fontSize: adjustedWidth(15.0),
+                      fontWeight: FontWeight.bold,
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: ThemeColors.shadowLight,
-                        blurRadius: 10.0,
-                        offset: Offset(-10.0, -10.0),
+                  ),
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: ThemeColors.gradient,
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15.0),
                       ),
-                      BoxShadow(
-                        color: Color.fromRGBO(41, 72, 255, 0.3),
-                        blurRadius: 15.0,
-                        offset: Offset(10.0, 10.0),
-                      )
-                    ]),
+                      boxShadow: [
+                        BoxShadow(
+                          color: ThemeColors.shadowLight,
+                          blurRadius: 10.0,
+                          offset: Offset(-10.0, -10.0),
+                        ),
+                        BoxShadow(
+                          color: Color.fromRGBO(41, 72, 255, 0.3),
+                          blurRadius: 15.0,
+                          offset: Offset(10.0, 10.0),
+                        )
+                      ]),
+                ),
               ),
               SizedBox(
                 height: adjustedHeight(40.0),
@@ -190,7 +218,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget inputField(name) {
+  Widget inputField(name, ctrl) {
     return Container(
       margin: EdgeInsets.only(top: adjustedHeight(35.0)),
       child: Column(
@@ -212,6 +240,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: EdgeInsets.only(left: adjustedWidth(10.0)),
                   height: adjustedHeight(15.0),
                   child: TextField(
+                    controller: ctrl,
                     obscureText: name == "Password",
                     style: TextStyle(
                       fontSize: adjustedWidth(20.0),
@@ -250,5 +279,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
   double adjustedWidth(double d) {
     return widget.width / d;
+  }
+
+  Future<void> login() async {
+    setState(() {
+      waiting = true;
+    });
+    var res = await auth.loginWithEmail(email: _emailCtrl.text, password: _passCtrl.text);
+    if (res['status']) {
+      setState(() {
+        waiting = false;
+      });
+      Navigator.pushReplacement(context,
+          CupertinoPageRoute(builder: (context) => BottomNav()));
+    } else {
+      setState(() {
+        waiting = false;
+      });
+      print(res);
+    }
   }
 }
