@@ -56,7 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               left: adjustedWidth(15.0),
               right: adjustedWidth(20.0)),
           padding: EdgeInsets.only(
-              top: MediaQuery.of(context).size.aspectRatio <= 2.0
+              top: MediaQuery.of(context).devicePixelRatio <= 2.0
                   ? adjustedHeight(80.0)
                   : 60.0),
           child: Column(

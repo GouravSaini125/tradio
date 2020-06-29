@@ -50,6 +50,10 @@ class _LoginScreenState extends State<LoginScreen> {
               top: adjustedHeight(20.0),
               left: adjustedWidth(15.0),
               right: adjustedWidth(20.0)),
+          padding: EdgeInsets.only(
+              top: MediaQuery.of(context).devicePixelRatio <= 2.0
+                  ? adjustedHeight(80.0)
+                  : 80.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
