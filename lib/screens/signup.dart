@@ -10,6 +10,7 @@ import 'package:proto/bottomNav.dart';
 import 'package:proto/icons/google_icons.dart';
 import 'package:proto/configs/ThemeColors.dart';
 import 'package:proto/repos/auth.dart';
+import 'package:proto/repos/prefs.dart';
 import 'package:proto/screens/login.dart';
 
 import '../configs/ThemeColors.dart';
@@ -298,6 +299,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     var res = await auth.signUpWithEmail(
         email: _emailCtrl.text, password: _passCtrl.text);
     if (res['status']) {
+      Prefs.prefs.setBool("isLoggedIn", true);
       setState(() {
         waiting = false;
       });

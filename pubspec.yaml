@@ -29,6 +29,7 @@ dependencies:
   eva_icons_flutter: ^2.0.0
   google_maps_flutter: ^0.5.27+3
   firebase_auth: ^0.16.1
+  shared_preferences: ^0.5.7+3
 
 dev_dependencies:
   flutter_test:

@@ -8,6 +8,7 @@ import 'package:proto/bottomNav.dart';
 import 'package:proto/icons/google_icons.dart';
 import 'package:proto/configs/ThemeColors.dart';
 import 'package:proto/repos/auth.dart';
+import 'package:proto/repos/prefs.dart';
 import 'package:proto/screens/signup.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -292,6 +293,7 @@ class _LoginScreenState extends State<LoginScreen> {
     var res = await auth.loginWithEmail(
         email: _emailCtrl.text, password: _passCtrl.text);
     if (res['status']) {
+      Prefs.prefs.setBool("isLoggedIn", true);
       setState(() {
         waiting = false;
       });
