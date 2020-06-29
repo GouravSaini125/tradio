@@ -24,9 +24,17 @@ class Auth {
     try {
       var authResult = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-      return authResult.user != null;
+      var res = {
+        "status": authResult.user != null,
+        "result": authResult
+      };
+      return res;
     } catch (e) {
-      return e.message;
+      var res = {
+        "status": false,
+        "result": e.message
+      };
+      return res;
     }
   }
 }

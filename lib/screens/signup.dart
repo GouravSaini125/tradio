@@ -26,12 +26,16 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   bool waiting = false;
   Auth auth;
-//  TextEditingController name
+  TextEditingController _nameCtrl, _emailCtrl, _passCtrl;
 
   @override
   void initState() {
+    super.initState();
     final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     auth = Auth(firebaseAuth);
+    _emailCtrl = TextEditingController();
+    _passCtrl = TextEditingController();
+    _nameCtrl = TextEditingController();
   }
 
   @override
@@ -82,9 +86,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 padding: EdgeInsets.only(top: adjustedHeight(250.0)),
                 child: Column(
                   children: <Widget>[
-                    inputField("Name"),
-                    inputField("Email"),
-                    inputField("Password"),
+                    inputField("Name", _nameCtrl),
+                    inputField("Email", _emailCtrl),
+                    inputField("Password", _passCtrl),
                   ],
                 ),
               ),
@@ -96,8 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   // setState(() {
                   //   waiting = true;
                   // });
-                  Navigator.pushReplacement(context,
-                      CupertinoPageRoute(builder: (context) => BottomNav()));
+                  register();
                 },
                 child: Container(
                   margin: EdgeInsets.fromLTRB(
@@ -217,6 +220,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _passCtrl.dispose();
+    _emailCtrl.dispose();
+    _nameCtrl.dispose();
+  }
+
   Widget inputField(name, controller) {
     return Container(
       margin: EdgeInsets.only(top: adjustedHeight(55.0)),
@@ -239,7 +250,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   padding: EdgeInsets.only(left: adjustedWidth(10.0)),
                   height: adjustedHeight(15.0),
                   child: TextField(
-//                    controller: controller,
+                    obscureText: name == "Password",
+                    controller: controller,
                     style: TextStyle(
                       fontSize: adjustedWidth(20.0),
                     ),
@@ -279,7 +291,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return widget.width / d;
   }
 
-  void register() {
-    auth.signUpWithEmail(email: null, password: null)
+  Future<void> register() async {
+    var res = await auth.signUpWithEmail(email: _emailCtrl.text, password: _passCtrl.text);
+    if (res['status']) {
+      Navigator.pushReplacement(context,
+          CupertinoPageRoute(builder: (context) => BottomNav()));
+    } else {
+      print(res);
+    }
   }
 }
