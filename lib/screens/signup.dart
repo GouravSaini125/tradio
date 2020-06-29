@@ -295,13 +295,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     setState(() {
       waiting = true;
     });
-    var res = await auth.signUpWithEmail(email: _emailCtrl.text, password: _passCtrl.text);
+    var res = await auth.signUpWithEmail(
+        email: _emailCtrl.text, password: _passCtrl.text);
     if (res['status']) {
       setState(() {
         waiting = false;
       });
-      Navigator.pushReplacement(context,
-          CupertinoPageRoute(builder: (context) => BottomNav()));
+      Navigator.pushReplacement(
+          context, CupertinoPageRoute(builder: (context) => BottomNav()));
     } else {
       setState(() {
         waiting = false;

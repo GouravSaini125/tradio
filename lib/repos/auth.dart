@@ -11,9 +11,11 @@ class Auth {
     try {
       var user = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-      return user != null;
+      var res = {"status": user != null, "result": user};
+      return res;
     } catch (e) {
-      return e.message;
+      var res = {"status": false, "result": e.message};
+      return res;
     }
   }
 
@@ -24,16 +26,10 @@ class Auth {
     try {
       var authResult = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-      var res = {
-        "status": authResult.user != null,
-        "result": authResult
-      };
+      var res = {"status": authResult.user != null, "result": authResult};
       return res;
     } catch (e) {
-      var res = {
-        "status": false,
-        "result": e.message
-      };
+      var res = {"status": false, "result": e.message};
       return res;
     }
   }

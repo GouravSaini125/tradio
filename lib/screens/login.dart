@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   login();
                 },
                 child: Container(
@@ -109,17 +109,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment(0.0, 0.0),
                   child: waiting
                       ? SpinKitWave(
-                    size: adjustedWidth(12.0),
-                    color: Colors.white60,
-                  )
+                          size: adjustedWidth(12.0),
+                          color: Colors.white60,
+                        )
                       : Text(
-                    "Sign In",
-                    style: TextStyle(
-                      color: ThemeColors.shadowLight,
-                      fontSize: adjustedWidth(15.0),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                          "Sign In",
+                          style: TextStyle(
+                            color: ThemeColors.shadowLight,
+                            fontSize: adjustedWidth(15.0),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
                           colors: ThemeColors.gradient,
@@ -285,13 +285,14 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       waiting = true;
     });
-    var res = await auth.loginWithEmail(email: _emailCtrl.text, password: _passCtrl.text);
+    var res = await auth.loginWithEmail(
+        email: _emailCtrl.text, password: _passCtrl.text);
     if (res['status']) {
       setState(() {
         waiting = false;
       });
-      Navigator.pushReplacement(context,
-          CupertinoPageRoute(builder: (context) => BottomNav()));
+      Navigator.pushReplacement(
+          context, CupertinoPageRoute(builder: (context) => BottomNav()));
     } else {
       setState(() {
         waiting = false;
