@@ -1,22 +1,23 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:proto/bottomNav.dart';
 import 'package:proto/configs/ThemeColors.dart';
-import 'package:proto/repos/prefs.dart';
-import 'package:proto/screens/login.dart';
-import 'package:proto/screens/signup.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:proto/myApp.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 void main() => runApp(
       DevicePreview(
         enabled: false,
-        builder: (context) => MyApp(),
+        builder: (context) => Initiate(),
       ),
     );
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class Initiate extends StatefulWidget {
+  @override
+  _InitiateState createState() => _InitiateState();
+}
+
+class _InitiateState extends State<Initiate> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,28 +27,20 @@ class MyApp extends StatelessWidget {
       title: 'Tradio',
       themeMode: ThemeMode.light,
       theme: ThemeData(fontFamily: 'Josefin'),
-      home: MyHomePage(),
+      home: SplashScreen(
+          seconds: 3,
+          navigateAfterSeconds: new MyApp(),
+          title: new Text(
+            'Welcome In SplashScreen',
+            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+          ),
+          image: new Image.asset('assets/images/flutter_logo.png'),
+          backgroundColor: Colors.white,
+          styleTextUnderTheLoader: new TextStyle(),
+          photoSize: 100.0,
+          loaderColor: ThemeColors.main,
+          loadingText: Text("Loading Your App!"),
+      ),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key}) : super(key: key);
-
-  Widget build(BuildContext context) {
-    getLoginStatus(context);
-    final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
-    return SafeArea(child: SignUpScreen(height: height, width: width));
-  }
-
-  getLoginStatus(BuildContext context) async {
-    await Prefs.loadPrefs();
-//    Prefs.prefs.remove("isLoggedIn");
-    var val = Prefs.prefs.getBool("isLoggedIn") ?? false;
-    if (val) {
-      Navigator.pushReplacement(
-          context, CupertinoPageRoute(builder: (context) => BottomNav()));
-    }
   }
 }
