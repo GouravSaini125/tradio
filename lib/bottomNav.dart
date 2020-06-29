@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:proto/screens/homePart.dart';
 import 'package:proto/screens/mapPage.dart';
+import 'package:proto/screens/serviceManHome.dart';
 import 'package:proto/screens/signup.dart';
+import 'package:proto/screens/userBookingHistory.dart';
 
 class BottomNav extends StatefulWidget {
   @override
@@ -19,8 +21,8 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     List<Widget> screens = <Widget>[
       HomePage(),
-      MapPage(),
-      HomePage(),
+      BookingHistory(),
+      ServiceManHome(),
       HomePage(),
     ];
     return Scaffold(
