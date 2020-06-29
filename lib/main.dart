@@ -43,6 +43,7 @@ class MyHomePage extends StatelessWidget {
 
   getLoginStatus(BuildContext context) async {
     await Prefs.loadPrefs();
+//    Prefs.prefs.remove("isLoggedIn");
     var val = Prefs.prefs.getBool("isLoggedIn") ?? false;
     if (val) {
       Navigator.pushReplacement(

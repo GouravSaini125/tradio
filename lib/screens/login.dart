@@ -297,8 +297,8 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         waiting = false;
       });
-      Navigator.pushReplacement(
-          context, CupertinoPageRoute(builder: (context) => BottomNav()));
+      Navigator.pushAndRemoveUntil(
+          context, CupertinoPageRoute(builder: (context) => BottomNav()),  (r) => false);
     } else {
       setState(() {
         waiting = false;
