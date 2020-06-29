@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                   return Container(
                       padding:
                           EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
-                      height: 400,
+                      height: 500,
                       alignment: Alignment.centerLeft,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +59,26 @@ class _HomePageState extends State<HomePage> {
                                 fontFamily: "Josefin", fontSize: 30.0),
                           ),
                           SizedBox(
-                            height: 40.0,
+                            height: 30.0,
+                          ),
+                          Container(
+                            height: 100,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                gradient: LinearGradient(
+                                    colors: ThemeColors.gradient2,
+                                    end: Alignment.bottomRight,
+                                    begin: Alignment.topLeft)),
+                            child: Center(
+                              child: Icon(
+                                EvaIcons.image,
+                                size: 30.0,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.0,
                           ),
                           TextField(
                             style: TextStyle(
@@ -302,8 +321,11 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {
-                            Navigator.push(context,
-                                SlideUpRoute(page: Details(index: index)));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Details(index: index)));
                           },
                           child: Hero(
                             tag: popularImages[index],
