@@ -1,6 +1,8 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:proto/anims/page_route.dart';
 import 'package:proto/configs/ThemeColors.dart';
+import 'package:proto/screens/serviceDetails.dart';
 
 class ServicesList extends StatefulWidget {
   // String catego/ry;
@@ -134,74 +136,88 @@ class _ServicesListState extends State<ServicesList> {
                   itemCount: 4,
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      width: 250,
-                      height: 250,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                              "assets/images/${popularImages[index]}",
-                            ),
-                            fit: BoxFit.cover),
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      margin: EdgeInsets.all(15.0),
-                      child: Center(
-                        child: Stack(
-                          children: <Widget>[
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.black38,
-                                  borderRadius: BorderRadius.circular(15.0)),
-                            ),
-                            Container(
-                              alignment: Alignment.bottomLeft,
-                              padding: EdgeInsets.only(
-                                  bottom: 20.0, left: 10.0, right: 10.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    "Example",
-                                    style: TextStyle(
-                                        fontSize: 30.0,
-                                        fontFamily: "Poiret",
-                                        color: Colors.white),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context, SlideUpRoute(page: Details(index: index)));
+                      },
+                      child: Hero(
+                        tag: popularImages[index],
+                        child: Container(
+                          width: 250,
+                          height: 250,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  "assets/images/${popularImages[index]}",
+                                ),
+                                fit: BoxFit.cover),
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          margin: EdgeInsets.all(15.0),
+                          child: Center(
+                            child: Stack(
+                              children: <Widget>[
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.black38,
+                                      borderRadius:
+                                          BorderRadius.circular(15.0)),
+                                ),
+                                Container(
+                                  alignment: Alignment.bottomLeft,
+                                  padding: EdgeInsets.only(
+                                      bottom: 20.0, left: 10.0, right: 10.0),
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          "Example",
+                                          style: TextStyle(
+                                              fontSize: 30.0,
+                                              fontFamily: "Poiret",
+                                              color: Colors.white),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Text(
+                                              "15\$",
+                                              style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontFamily: "Josefin",
+                                                  color: Colors.white),
+                                            ),
+                                            Row(
+                                              children: <Widget>[
+                                                Text(
+                                                  "4.5",
+                                                  style: TextStyle(
+                                                      fontSize: 20.0,
+                                                      fontFamily: "Josefin",
+                                                      color: Colors.white),
+                                                ),
+                                                Icon(
+                                                  EvaIcons.star,
+                                                  size: 15.0,
+                                                  color: Colors.yellow,
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(
-                                        "15\$",
-                                        style: TextStyle(
-                                            fontSize: 20.0,
-                                            fontFamily: "Josefin",
-                                            color: Colors.white),
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Text(
-                                            "4.5",
-                                            style: TextStyle(
-                                                fontSize: 20.0,
-                                                fontFamily: "Josefin",
-                                                color: Colors.white),
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            size: 15.0,
-                                            color: Colors.yellow,
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     );
