@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1079179046992",
+    "firebase_url": "https://tradio-267e0.firebaseio.com",
+    "project_id": "tradio-267e0",
+    "storage_bucket": "tradio-267e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079179046992:android:1b0e6eec1dc22eb5ea6155",
+        "android_client_info": {
+          "package_name": "com.example.proto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079179046992-dgdgf67ome9qinqo1549g0b1j9e24c6j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmXdHh62vIh3Ri5NNze9MxdEDDnizIVBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079179046992-dgdgf67ome9qinqo1549g0b1j9e24c6j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

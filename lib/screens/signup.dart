@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -8,6 +9,7 @@ import 'package:proto/anims/page_route.dart';
 import 'package:proto/bottomNav.dart';
 import 'package:proto/icons/google_icons.dart';
 import 'package:proto/configs/ThemeColors.dart';
+import 'package:proto/repos/auth.dart';
 import 'package:proto/screens/login.dart';
 
 import '../configs/ThemeColors.dart';
@@ -23,6 +25,14 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   bool waiting = false;
+  Auth auth;
+//  TextEditingController name
+
+  @override
+  void initState() {
+    final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+    auth = Auth(firebaseAuth);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -207,7 +217,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget inputField(name) {
+  Widget inputField(name, controller) {
     return Container(
       margin: EdgeInsets.only(top: adjustedHeight(55.0)),
       child: Column(
@@ -229,6 +239,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   padding: EdgeInsets.only(left: adjustedWidth(10.0)),
                   height: adjustedHeight(15.0),
                   child: TextField(
+//                    controller: controller,
                     style: TextStyle(
                       fontSize: adjustedWidth(20.0),
                     ),
@@ -266,5 +277,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   double adjustedWidth(double d) {
     return widget.width / d;
+  }
+
+  void register() {
+    auth.signUpWithEmail(email: null, password: null)
   }
 }
