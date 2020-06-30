@@ -41,7 +41,9 @@ class _CategoriesState extends State<Categories> {
                   EvaIcons.arrowBack,
                   color: Colors.black,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                    Navigator.pop(context);
+                }),
           ),
         ),
         actions: <Widget>[

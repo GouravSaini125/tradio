@@ -60,7 +60,9 @@ class _ServicesListState extends State<ServicesList> {
                   EvaIcons.arrowBack,
                   color: Colors.black,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
           ),
         ),
         title: Hero(
