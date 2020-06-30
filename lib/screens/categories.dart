@@ -14,15 +14,16 @@ List<String> category = [
   "Cleaning",
   "Electrical",
   "Pest Control",
-  "Plumber"
+  "Mechanical",
+  "Lawn Mower"
 ];
-
 List<String> categoryIcon = [
   "construction.png",
   "vacuum-cleaner.png",
   "electricity-bill.png",
   "grasshopper.png",
-  "water-bill.png"
+  "repair.png",
+  "planting.png"
 ];
 
 class _CategoriesState extends State<Categories> {
@@ -42,7 +43,7 @@ class _CategoriesState extends State<Categories> {
                   color: Colors.black,
                 ),
                 onPressed: () {
-                    Navigator.pop(context);
+                  Navigator.pop(context);
                 }),
           ),
         ),

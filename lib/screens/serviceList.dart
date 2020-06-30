@@ -18,15 +18,16 @@ List<String> category = [
   "Cleaning",
   "Electrical",
   "Pest Control",
-  "Plumber"
+  "Mechanical",
+  "Lawn Mower"
 ];
-
 List<String> categoryIcon = [
   "construction.png",
   "vacuum-cleaner.png",
   "electricity-bill.png",
   "grasshopper.png",
-  "water-bill.png"
+  "repair.png",
+  "planting.png"
 ];
 
 List<String> popularImages = [

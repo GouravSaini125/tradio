@@ -13,12 +13,21 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-List<String> category = ["Handyman", "Cleaning", "Electrical", "Pest Control"];
+List<String> category = [
+  "Handyman",
+  "Cleaning",
+  "Electrical",
+  "Pest Control",
+  "Mechanic",
+  "Lawn Mower"
+];
 List<String> categoryIcon = [
   "construction.png",
   "vacuum-cleaner.png",
   "electricity-bill.png",
-  "grasshopper.png"
+  "grasshopper.png",
+  "repair.png",
+  "planting.png"
 ];
 
 List<String> popularImages = [
