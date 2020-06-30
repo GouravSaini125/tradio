@@ -18,40 +18,46 @@ class _ImgPickerState extends State<ImgPicker> {
 
   Widget buildGridView() {
     if (images != null && images.length != 0)
-//      return GridView.count(
-//        crossAxisCount: 3,
-//        children: List.generate(images.length, (index) {
-//          Asset asset = images[index];
-//          return AssetThumb(
-//            asset: asset,
-//            width: 300,
-//            height: 300,
-//          );
-//        }),
-//      );
       return ListView.builder(
-            itemCount: images.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext ctxt, int index) {
-              Asset asset = images[index];
-              return AssetThumb(
+          itemCount: images.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (BuildContext ctxt, int index) {
+            Asset asset = images[index];
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AssetThumb(
                 asset: asset,
                 width: 150,
                 height: 150,
-              );
-//              return Container(
-//                height: 100,
-//                width: 100,
-//                padding: EdgeInsets.all(20.0),
-//                color: Colors.green,
-//              );
-            });
+              ),
+            );
+          });
     else
       return Container(
-        height: 150,
-        width: 150,
-        color: Colors.green,
-      );
+          child: Stack(
+            children: <Widget>[
+              Center(
+                child: Image.asset(
+                  "assets/images/flutter_logo.png",
+                  height: 150,
+                  width: 150,
+                ),
+              ),
+              Center(
+                child: Container(
+                  color: Color.fromRGBO(0, 0, 255, 0.3),
+                  padding: EdgeInsets.all(6.0),
+                  child: Text(
+                    "No Images Selected",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ));
   }
 
   Future<void> loadAssets() async {
@@ -87,13 +93,14 @@ class _ImgPickerState extends State<ImgPicker> {
     return Column(
       children: <Widget>[
         Container(
-            child: buildGridView(),
+          child: buildGridView(),
           height: 200.0,
+          margin: EdgeInsets.only(bottom: 30.0),
         ),
         GestureDetector(
           onTap: loadAssets,
           child: Container(
-            height: 100,
+            height: 70,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
@@ -102,9 +109,24 @@ class _ImgPickerState extends State<ImgPicker> {
                     end: Alignment.bottomRight,
                     begin: Alignment.topLeft)),
             child: Center(
-              child: Icon(
-                EvaIcons.image,
-                size: 30.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(
+                    EvaIcons.image,
+                    size: 30.0,
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(
+                    "Pick Images",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

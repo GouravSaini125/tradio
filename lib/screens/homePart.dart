@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   return Container(
                       padding:
                           EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
-                      height: 800,
+                      height: 700,
                       alignment: Alignment.centerLeft,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
