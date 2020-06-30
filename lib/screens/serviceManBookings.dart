@@ -3,9 +3,9 @@ import 'package:proto/configs/ThemeColors.dart';
 import 'package:proto/screens/bookingDetails.dart';
 import 'package:proto/screens/categories.dart';
 
-class ServiceManHome extends StatefulWidget {
+class ServiceManBookings extends StatefulWidget {
   @override
-  _ServiceManHomeState createState() => _ServiceManHomeState();
+  _ServiceManBookingsState createState() => _ServiceManBookingsState();
 }
 
 List<String> category = ["Handyman", "Cleaning", "Electrical", "Pest Control"];
@@ -16,7 +16,7 @@ List<String> categoryIcon = [
   "grasshopper.png"
 ];
 
-class _ServiceManHomeState extends State<ServiceManHome> {
+class _ServiceManBookingsState extends State<ServiceManBookings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
