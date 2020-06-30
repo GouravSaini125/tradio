@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:proto/bottomNav.dart';
 import 'package:proto/repos/prefs.dart';
 import 'package:proto/screens/signup.dart';
+import 'package:proto/screens/userSelection.dart';
 
 class MyApp extends StatelessWidget {
   MyApp({Key key}) : super(key: key);
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     getLoginStatus(context);
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-    return SafeArea(child: SignUpScreen(height: height, width: width));
+    return SafeArea(child: UserSelection());
   }
 
   getLoginStatus(BuildContext context) async {
