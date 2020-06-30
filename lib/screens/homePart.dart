@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/screens/addressPage.dart';
 import 'package:proto/screens/categories.dart';
+import 'package:proto/screens/imgPicker.dart';
 import 'package:proto/screens/serviceDetails.dart';
 import 'package:proto/screens/serviceList.dart';
 import '../configs/ThemeColors.dart';
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   return Container(
                       padding:
                           EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
-                      height: 500,
+                      height: 800,
                       alignment: Alignment.centerLeft,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,22 +62,7 @@ class _HomePageState extends State<HomePage> {
                           SizedBox(
                             height: 30.0,
                           ),
-                          Container(
-                            height: 100,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                gradient: LinearGradient(
-                                    colors: ThemeColors.gradient2,
-                                    end: Alignment.bottomRight,
-                                    begin: Alignment.topLeft)),
-                            child: Center(
-                              child: Icon(
-                                EvaIcons.image,
-                                size: 30.0,
-                              ),
-                            ),
-                          ),
+                          ImgPicker(),
                           SizedBox(
                             height: 20.0,
                           ),

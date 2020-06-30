@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/configs/ThemeColors.dart';
 import 'package:proto/myApp.dart';
+import 'package:proto/screens/imgPicker.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 void main() => runApp(
@@ -28,15 +29,15 @@ class _InitiateState extends State<Initiate> {
       themeMode: ThemeMode.light,
       theme: ThemeData(fontFamily: 'Josefin'),
       home: SplashScreen(
-          seconds: 3,
-          navigateAfterSeconds: new MyApp(),
-          title: new Text(
+          seconds: 1,
+          navigateAfterSeconds: MyApp(),
+          title: Text(
             'Welcome In SplashScreen',
-            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
           ),
-          image: new Image.asset('assets/images/flutter_logo.png'),
+          image: Image.asset('assets/images/flutter_logo.png'),
           backgroundColor: Colors.white,
-          styleTextUnderTheLoader: new TextStyle(),
+          styleTextUnderTheLoader: TextStyle(),
           photoSize: 100.0,
           loaderColor: ThemeColors.main,
           loadingText: Text("Loading Your App!"),
