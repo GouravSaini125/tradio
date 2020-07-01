@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:proto/screens/homePart.dart';
 import 'package:proto/screens/mapPage.dart';
+import 'package:proto/screens/profilePage.dart';
 import 'package:proto/screens/serviceManNearby.dart';
 import 'package:proto/screens/serviceManBookings.dart';
 import 'package:proto/screens/signup.dart';
@@ -24,7 +25,7 @@ class _BottomNavState extends State<BottomNav> {
     List<Widget> screens = <Widget>[
       HomePage(),
       BookingHistory(),
-      HomePage(),
+      ProfilePage(),
       HomePage(),
     ];
     return Scaffold(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:proto/screens/addressPage.dart';
 import 'package:proto/screens/categories.dart';
 import 'package:proto/screens/imgPicker.dart';
+import 'package:proto/screens/postWork.dart';
 import 'package:proto/screens/serviceDetails.dart';
 import 'package:proto/screens/serviceList.dart';
 import '../configs/ThemeColors.dart';
@@ -44,110 +45,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         heroTag: "fab",
         onPressed: () {
-          showModalBottomSheet(
-              isScrollControlled: true,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10.0),
-                      topRight: Radius.circular(10.0))),
-              context: context,
-              builder: (BuildContext context) {
-                return StatefulBuilder(
-                    builder: (BuildContext context, StateSetter setState) {
-                  return Container(
-                      padding:
-                          EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
-                      height: 700,
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "Post Work",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                fontFamily: "Josefin", fontSize: 30.0),
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          ImgPicker(),
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          TextField(
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontFamily: "Josefin",
-                            ),
-                            decoration: InputDecoration(
-                              hintText: "Enter Title",
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color(0xFF1165C1), width: 2.0),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 40.0,
-                          ),
-                          TextField(
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontFamily: "Josefin",
-                            ),
-                            decoration: InputDecoration(
-                              hintText: "Enter Description",
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color(0xFF1165C1), width: 2.0),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 40.0,
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Hero(
-                              tag: "nextButton",
-                              child: Container(
-                                width: 70.0,
-                                height: 70.0,
-                                decoration: BoxDecoration(
-                                    // color: Color(0xFF1165C1),
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          Color(0xFF396afc),
-                                          Color(0xFF2948ff)
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color:
-                                              Color.fromRGBO(57, 106, 252, 0.3),
-                                          blurRadius: 10.0,
-                                          offset: Offset(3, 7.0))
-                                    ],
-                                    borderRadius: BorderRadius.circular(50.0)),
-                                child: IconButton(
-                                    icon: Icon(
-                                      EvaIcons.arrowCircleRight,
-                                      color: Colors.white,
-                                      size: 50.0,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(context,
-                                          SlideUpRoute(page: Address()));
-                                    }),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ));
-                });
-              });
+          Navigator.push(context, SlideUpRoute(page: PostWork()));
         },
         child: Icon(EvaIcons.plusOutline),
       ),

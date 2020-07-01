@@ -82,7 +82,7 @@ class _AddressState extends State<Address> {
               ),
             ),
             DraggableScrollableSheet(
-              initialChildSize: 0.2,
+              initialChildSize: 0.4,
               maxChildSize: 0.55,
               minChildSize: 0.2,
               builder: (context, controller) {
