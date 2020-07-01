@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proto/configs/ThemeColors.dart';
 import 'package:proto/screens/categories.dart';
 import 'package:proto/screens/nearbyDetails.dart';
 
@@ -49,9 +50,13 @@ class _ServiceManNearbyState extends State<ServiceManNearby> {
                     height: 110,
                     margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
                     decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: ThemeColors.gradient2,
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight),
                       boxShadow: [
                         BoxShadow(
-                            color: Color(0xFF3a7bd5).withOpacity(0.1),
+                            color: Color(0xFFff5e62).withOpacity(0.2),
                             blurRadius: 10.0,
                             offset: Offset(1, 7))
                       ],
@@ -70,7 +75,7 @@ class _ServiceManNearbyState extends State<ServiceManNearby> {
                                 style: TextStyle(
                                     fontFamily: "Josefin",
                                     fontSize: 25.0,
-                                    color: Colors.black),
+                                    color: Colors.white),
                               ),
                               SizedBox(
                                 width: 10.0,

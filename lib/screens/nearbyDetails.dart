@@ -47,19 +47,23 @@ class _NearbyDetailsState extends State<NearbyDetails> {
               padding: EdgeInsets.all(20.0),
               margin: EdgeInsets.all(15.0),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Color(0xFF3a7bd5).withOpacity(0.1),
-                        blurRadius: 10.0,
-                        offset: Offset(1, 7))
-                  ],
-                  color: Colors.white
-                  // gradient: LinearGradient(
-                  //     colors: ThemeColors.gradient2,
-                  //     begin: Alignment.topLeft,
-                  //     end: Alignment.bottomRight)
-                  ),
+                borderRadius: BorderRadius.circular(10.0),
+                gradient: LinearGradient(
+                    colors: ThemeColors.gradient2,
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight),
+                boxShadow: [
+                  BoxShadow(
+                      color: Color(0xFFff5e62).withOpacity(0.2),
+                      blurRadius: 10.0,
+                      offset: Offset(1, 7))
+                ],
+                // color: Colors.white
+                // gradient: LinearGradient(
+                //     colors: ThemeColors.gradient2,
+                //     begin: Alignment.topLeft,
+                //     end: Alignment.bottomRight)
+              ),
               child: Material(
                 color: Colors.transparent,
                 child: Column(
@@ -88,7 +92,7 @@ class _NearbyDetailsState extends State<NearbyDetails> {
                             Text(
                               "Carpentry",
                               style: TextStyle(
-                                  fontSize: 30.0, color: Colors.black),
+                                  fontSize: 30.0, color: Colors.white),
                             ),
                             Text(
                               "3/76, UIT Sector 3, Bhiwadi",
@@ -104,15 +108,15 @@ class _NearbyDetailsState extends State<NearbyDetails> {
                     ),
                     Text(
                       "Description",
-                      style: TextStyle(fontSize: 25.0, color: Colors.black),
+                      style: TextStyle(fontSize: 25.0, color: Colors.white70),
                     ),
                     Text(
                       "description about work",
-                      style: TextStyle(fontSize: 15.0, color: Colors.black87),
+                      style: TextStyle(fontSize: 15.0, color: Colors.white70),
                     ),
                     Text(
                       "Special requirements: tools",
-                      style: TextStyle(fontSize: 15.0, color: Colors.black87),
+                      style: TextStyle(fontSize: 15.0, color: Colors.white70),
                     ),
                     SizedBox(
                       height: 10.0,
