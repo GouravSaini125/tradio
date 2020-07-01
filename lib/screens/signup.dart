@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:proto/anims/page_route.dart';
 import 'package:proto/bottomNav.dart';
+import 'package:proto/bottomNavService.dart';
 import 'package:proto/icons/google_icons.dart';
 import 'package:proto/configs/ThemeColors.dart';
 import 'package:proto/repos/auth.dart';
@@ -17,8 +18,9 @@ import '../configs/ThemeColors.dart';
 
 class SignUpScreen extends StatefulWidget {
   final double height, width;
+  final bool isUser;
 
-  SignUpScreen({this.height, this.width});
+  SignUpScreen({this.height, this.width, this.isUser});
 
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
@@ -200,7 +202,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(createRoute(LoginScreen(
-                            height: widget.height, width: widget.width)));
+                            height: widget.height, width: widget.width, isUser: widget.isUser,)));
                       },
                       child: Text(
                         "SignIn",
@@ -300,11 +302,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
         email: _emailCtrl.text, password: _passCtrl.text);
     if (res['status']) {
       Prefs.prefs.setBool("isLoggedIn", true);
+      Prefs.prefs.setBool("isUser", widget.isUser);
       setState(() {
         waiting = false;
       });
       Navigator.pushAndRemoveUntil(
-          context, CupertinoPageRoute(builder: (context) => BottomNav()),  (r) => false);
+          context, CupertinoPageRoute(builder: (context) => widget.isUser ? BottomNav() : BottomNavService()),  (r) => false);
     } else {
       setState(() {
         waiting = false;

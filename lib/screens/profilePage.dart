@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/configs/ThemeColors.dart';
+import 'package:proto/repos/prefs.dart';
 import 'package:proto/screens/userSelection.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -24,6 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
+        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -50,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             SizedBox(
-              height: 20.0,
+              height: 30.0,
             ),
             Text(
               "Example",
@@ -64,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
               style: TextStyle(color: Colors.black87, fontSize: 15.0),
             ),
             SizedBox(
-              height: 20.0,
+              height: 30.0,
             ),
             Container(
                 width: MediaQuery.of(context).size.width - 100,
@@ -89,11 +91,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 )),
             SizedBox(
-              height: 20.0,
+              height: 30.0,
             ),
             GestureDetector(
               onTap: () {
-                FirebaseAuth.instance.signOut();
+                Prefs.prefs.remove("isLoggedIn");
+//                  FirebaseAuth.instance.signOut();
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => UserSelection()),

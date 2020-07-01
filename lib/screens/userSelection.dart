@@ -12,6 +12,7 @@ class UserSelection extends StatefulWidget {
 
 class _UserSelectionState extends State<UserSelection> {
   String userType;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +26,15 @@ class _UserSelectionState extends State<UserSelection> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Text(
+                "Choose Your Role",
+                style: TextStyle(
+                  fontSize: 30.0,
+                ),
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
               GestureDetector(
                 onTap: () {
                   setState(() {
@@ -32,14 +42,18 @@ class _UserSelectionState extends State<UserSelection> {
                   });
                 },
                 child: AnimatedContainer(
-                  duration: Duration(milliseconds: 700),
-                  width: MediaQuery.of(context).size.width - 120,
-                  height: MediaQuery.of(context).size.height / 3.2,
+                  duration: Duration(milliseconds: 300),
+                  width: userType != "user"
+                      ? MediaQuery.of(context).size.width / 1.5 - 120
+                      : MediaQuery.of(context).size.width / 1.5 - 90.0,
+                  height: userType != "user"
+                      ? MediaQuery.of(context).size.height / 6
+                      : MediaQuery.of(context).size.height / 6 + 30.0,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
                           colors: userType == "user"
                               ? ThemeColors.gradient2
-                              : [Colors.white, Colors.white],
+                              : [Colors.white, Colors.grey[350]],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight),
                       borderRadius: BorderRadius.circular(15.0),
@@ -71,14 +85,18 @@ class _UserSelectionState extends State<UserSelection> {
                   });
                 },
                 child: AnimatedContainer(
-                  duration: Duration(milliseconds: 700),
-                  width: MediaQuery.of(context).size.width - 120,
-                  height: MediaQuery.of(context).size.height / 3.2,
+                  duration: Duration(milliseconds: 300),
+                  width: userType != "service"
+                      ? MediaQuery.of(context).size.width / 1.5 - 120
+                      : MediaQuery.of(context).size.width / 1.5 - 90.0,
+                  height: userType != "service"
+                      ? MediaQuery.of(context).size.height / 6
+                      : MediaQuery.of(context).size.height / 6 + 30.0,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
                           colors: userType == "service"
                               ? ThemeColors.gradient3
-                              : [Colors.white, Colors.white],
+                              : [Colors.white, Colors.grey[350]],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight),
                       borderRadius: BorderRadius.circular(15.0),
@@ -101,7 +119,7 @@ class _UserSelectionState extends State<UserSelection> {
                 ),
               ),
               SizedBox(
-                height: 30.0,
+                height: 50.0,
               ),
               Container(
                 width: 70.0,
@@ -127,15 +145,15 @@ class _UserSelectionState extends State<UserSelection> {
                     ),
                     onPressed: () {
                       if (userType != null || userType != "") {
-                        Navigator.pushAndRemoveUntil(
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SignUpScreen(
                                       height:
                                           MediaQuery.of(context).size.height,
                                       width: MediaQuery.of(context).size.width,
-                                    )),
-                            (route) => false);
+                                  isUser: userType == "user",
+                                    )));
                         // Navigator.pushAndRemoveUntil(
                         //     context,
                         //     MaterialPageRoute(

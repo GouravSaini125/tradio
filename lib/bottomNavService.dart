@@ -48,10 +48,12 @@ class _BottomNavServiceState extends State<BottomNavService> {
                 GButton(
                   icon: EvaIcons.home,
                   text: 'Home',
+                    margin: EdgeInsets.only(left: MediaQuery.of(context).size.width/8),
                 ),
                 GButton(
                   icon: EvaIcons.listOutline,
                   text: 'bookings',
+                    margin: EdgeInsets.only(right: MediaQuery.of(context).size.width/8),
                 ),
               ],
               selectedIndex: _selectedIndex,

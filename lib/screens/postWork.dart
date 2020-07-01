@@ -41,7 +41,7 @@ class _PostWorkState extends State<PostWork> {
                 ..addListener(listener)
                 ..setVolume(1.0)
                 ..initialize()
-                ..setLooping(true)
+                ..setLooping(false)
                 ..play();
             });
           }
@@ -100,7 +100,16 @@ class _PostWorkState extends State<PostWork> {
     } else if (controller.value.initialized) {
       return Padding(
         padding: EdgeInsets.all(10.0),
-        child: AspectRatioVideo(controller),
+        child: GestureDetector(
+          onTap: (){
+            setState(() {
+              _controller.value.isPlaying
+                  ? _controller.pause()
+                  : _controller.play();
+            });
+          },
+            child: AspectRatioVideo(controller)
+        ),
       );
     } else {
       return const Text(
