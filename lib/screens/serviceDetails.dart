@@ -1,6 +1,9 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/configs/ThemeColors.dart';
+import 'package:proto/screens/postWork.dart';
+
+import 'homePart.dart';
 
 class Details extends StatefulWidget {
   int index;
@@ -121,20 +124,25 @@ class _DetailsState extends State<Details> {
                       SizedBox(
                         height: 35.0,
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width - 100,
-                        height: 60.0,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: ThemeColors.gradient2,
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight),
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: Center(
-                          child: Text(
-                            "Book",
-                            style: TextStyle(
-                                color: Colors.white60, fontSize: 20.0),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, SlideUpRoute(page: PostWork()));
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width - 100,
+                          height: 60.0,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  colors: ThemeColors.gradient2,
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight),
+                              borderRadius: BorderRadius.circular(10.0)),
+                          child: Center(
+                            child: Text(
+                              "Book",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20.0),
+                            ),
                           ),
                         ),
                       )
