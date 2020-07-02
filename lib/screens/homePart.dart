@@ -18,6 +18,7 @@ List<String> category = [
   "Handyman",
   "Cleaning",
   "Electrical",
+  "Plumber",
   "Pest Control",
   "Mechanic",
   "Lawn Mower"
@@ -26,6 +27,7 @@ List<String> categoryIcon = [
   "construction.png",
   "vacuum-cleaner.png",
   "electricity-bill.png",
+  "plumber.png",
   "grasshopper.png",
   "repair.png",
   "planting.png"

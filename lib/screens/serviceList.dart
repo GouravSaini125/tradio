@@ -17,6 +17,7 @@ List<String> category = [
   "Handyman",
   "Cleaning",
   "Electrical",
+  "Plumber",
   "Pest Control",
   "Mechanical",
   "Lawn Mower"
@@ -25,6 +26,7 @@ List<String> categoryIcon = [
   "construction.png",
   "vacuum-cleaner.png",
   "electricity-bill.png",
+  "plumber.png",
   "grasshopper.png",
   "repair.png",
   "planting.png"
@@ -39,12 +41,6 @@ List<String> popularImages = [
 
 class _ServicesListState extends State<ServicesList> {
   ScrollController scrollController = new ScrollController();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

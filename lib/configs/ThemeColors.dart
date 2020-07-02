@@ -23,6 +23,7 @@ class ThemeColors {
     Color(0xFF46b3e6),
     Color(0xFFffdc34),
     Color(0xFF6decb9),
+    Color(0xFFff9966),
     Color(0xFF5ca0d3),
     Color(0xFFff6337),
     Color(0xFF46b3e6)

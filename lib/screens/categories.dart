@@ -13,6 +13,7 @@ List<String> category = [
   "Handyman",
   "Cleaning",
   "Electrical",
+  "Plumber",
   "Pest Control",
   "Mechanical",
   "Lawn Mower"
@@ -21,6 +22,7 @@ List<String> categoryIcon = [
   "construction.png",
   "vacuum-cleaner.png",
   "electricity-bill.png",
+  "plumber.png",
   "grasshopper.png",
   "repair.png",
   "planting.png"
@@ -144,6 +146,7 @@ class _CategoriesState extends State<Categories> {
 
 class SlideUpRoute extends PageRouteBuilder {
   final Widget page;
+
   SlideUpRoute({this.page})
       : super(
           pageBuilder: (
